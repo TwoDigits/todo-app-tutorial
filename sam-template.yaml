@@ -24,7 +24,7 @@ Resources:
     Type: AWS::Serverless::Api
     Properties:
       Name:
-        Fn::Sub: todo-app-${StageName}
+        Fn::Sub: todo-app-api-${StageName}
       StageName: dev
 
   ListTasksFunction:
@@ -32,7 +32,7 @@ Resources:
     Properties:
       CodeUri: src/list-tasks/
       FunctionName:
-        Fn::Sub: lists-tasks-${StageName}
+        Fn::Sub: todo-app-lists-tasks-${StageName}
       Policies:
         DynamoDBReadPolicy:
           TableName:
@@ -54,7 +54,7 @@ Resources:
     Type: AWS::Serverless::SimpleTable
     Properties:
       TableName:
-        Fn::Sub: tasks-${StageName}
+        Fn::Sub: todo-app-tasks-${StageName}
       PrimaryKey:
         Name: id
         Type: String
