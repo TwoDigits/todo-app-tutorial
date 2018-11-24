@@ -33,6 +33,14 @@ Resources:
       CodeUri: src/list-tasks/
       FunctionName:
         Fn::Sub: lists-tasks-${StageName}
+      Policies:
+        DynamoDBReadPolicy:
+          TableName:
+            Ref: TasksTable
+      Environment:
+        Variables:
+          TABLE_NAME:
+            Ref: TasksTable
       Events:
         List:
           Type: Api
@@ -41,3 +49,18 @@ Resources:
             Method: GET
             RestApiId:
               Ref: RestApi
+
+  TasksTable:
+    Type: AWS::Serverless::SimpleTable
+    Properties:
+      TableName:
+        Fn::Sub: tasks-${StageName}
+      PrimaryKey:
+        Name: id
+        Type: String
+      ProvisionedThroughput:
+        ReadCapacityUnits: 1
+        WriteCapacityUnits: 1
+      Tags:
+        stage:
+          Ref: StageName
