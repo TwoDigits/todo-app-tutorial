@@ -1,0 +1,43 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+    Simple implementation of a REST API for an imaginary todo app.
+
+Globals:
+  Function:
+    Runtime: nodejs8.10
+    Handler: index.handler
+    Timeout: 60
+    Tags:
+      stage:
+        Ref: StageName
+
+Parameters:
+  StageName:
+    Type: String
+    Default: dev
+    Description: The Lambda Function Stage
+
+Resources:
+
+  RestApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      Name:
+        Fn::Sub: todo-app-${StageName}
+      StageName: dev
+
+  ListTasksFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/list-tasks/
+      FunctionName:
+        Fn::Sub: lists-tasks-${StageName}
+      Events:
+        List:
+          Type: Api
+          Properties:
+            Path: /
+            Method: GET
+            RestApiId:
+              Ref: RestApi
