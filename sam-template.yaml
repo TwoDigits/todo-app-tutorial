@@ -73,6 +73,29 @@ Resources:
             RestApiId:
               Ref: RestApi
 
+  GetTaskFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/get-task/
+      FunctionName:
+        Fn::Sub: todo-app-get-task-${StageName}
+      Policies:
+        DynamoDBReadPolicy:
+          TableName:
+            Ref: TasksTable
+      Environment:
+        Variables:
+          TABLE_NAME:
+            Ref: TasksTable
+      Events:
+        Get:
+          Type: Api
+          Properties:
+            Path: /{id}
+            Method: GET
+            RestApiId:
+              Ref: RestApi
+
   TasksTable:
     Type: AWS::Serverless::SimpleTable
     Properties:
