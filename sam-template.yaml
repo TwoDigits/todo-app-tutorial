@@ -96,6 +96,29 @@ Resources:
             RestApiId:
               Ref: RestApi
 
+  DeleteTaskFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/delete-task/
+      FunctionName:
+        Fn::Sub: todo-app-delete-task-${StageName}
+      Policies:
+        DynamoDBCrudPolicy:
+          TableName:
+            Ref: TasksTable
+      Environment:
+        Variables:
+          TABLE_NAME:
+            Ref: TasksTable
+      Events:
+        Delete:
+          Type: Api
+          Properties:
+            Path: /{id}
+            Method: DELETE
+            RestApiId:
+              Ref: RestApi
+
   TasksTable:
     Type: AWS::Serverless::SimpleTable
     Properties:
