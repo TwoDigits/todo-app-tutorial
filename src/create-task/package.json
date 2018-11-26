@@ -1,0 +1,11 @@
+{
+  "name": "create-task",
+  "version": "1.0.0",
+  "description": "",
+  "author": "Jens Eickmeyer <jens.eickmeyer@carpinuslabs.com>",
+  "license": "MIT",
+  "main": "index.js",
+  "dependencies": {
+    "uuid": "^3.3.2"
+  }
+}
