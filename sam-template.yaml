@@ -133,3 +133,12 @@ Resources:
       Tags:
         stage:
           Ref: StageName
+
+Outputs:
+  ApiUrl:
+    Value:
+      Fn::Join:
+        - ""
+        - - "https://"
+          - Ref: RestApi
+          - Fn::Sub: ".execute-api.${AWS::Region}.amazonaws.com/dev"
