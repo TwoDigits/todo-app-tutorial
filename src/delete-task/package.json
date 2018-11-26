@@ -1,0 +1,8 @@
+{
+  "name": "delete-task",
+  "version": "1.0.0",
+  "description": "",
+  "author": "Jens Eickmeyer <jens.eickmeyer@carpinuslabs.com>",
+  "license": "MIT",
+  "main": "index.js"
+}
