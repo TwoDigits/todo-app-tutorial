@@ -1,6 +1,6 @@
 #!/bin/bash
 
-S3_BUCKET=
+S3_BUCKET=com.accenture.dus.sam.deployment.eu-west-1
 INPUT_FILE=sam-template.yaml
 OUTPUT_FILE=sam-template-output.yaml
 STAGE_NAME=dev
@@ -20,7 +20,7 @@ done
 cd $basePath
 
 aws cloudformation package --template-file $INPUT_FILE --output-template-file $OUTPUT_FILE --s3-bucket $S3_BUCKET
-aws cloudformation deploy --template-file $OUTPUT_FILE --stack-name $STACK_NAME --parameter-overrides StageName=$STAGE_NAME --role-arn arn:aws:iam::022876999554:role/CloudFormationDeploymentRole --capabilities CAPABILITY_IAM
+aws cloudformation deploy --template-file $OUTPUT_FILE --stack-name $STACK_NAME --parameter-overrides StageName=$STAGE_NAME --role-arn arn:aws:iam::975746714216:role/CloudFormationDeploymentRole --capabilities CAPABILITY_IAM
 
 API_GATEWAY_URL=$(aws cloudformation describe-stacks --stack-name $STACK_NAME --query 'Stacks[0].Outputs[0].OutputValue')
 echo "API Gateway URL: $API_GATEWAY_URL"
