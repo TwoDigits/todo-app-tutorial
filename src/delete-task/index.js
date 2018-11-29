@@ -5,7 +5,7 @@ const TasksTableName = process.env.TABLE_NAME;
 exports.handler = async (event) => {
   const id = event.pathParameters.id;
 
-  const task = await deleteTask(id);
+  await deleteTask(id);
   return {
     statusCode: 200
   }
