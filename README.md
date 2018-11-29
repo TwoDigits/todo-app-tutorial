@@ -57,6 +57,7 @@ Alternatively, you can use tools like [Postman](https://www.getpostman.com) for 
 Fill in the missing pieces for the endpoint implementation `get-task`. The endpoint should return HTTP status code `200` and the task as a JSON object if a record with the matching ID can be found in DynamoDB. In case no record can be found the HTTP status code `404` should be returned instead.
 
 ### Delete Task
+Fill in the missing pieces for the endpoint implementation `delete-task`. The endpoint should return HTTP status code `200` if the record has been deleted successfully.
 
 ### Update Task
 Create a new endpoint to update an existing task. The endpoint should have the path `/{id}` and the HTTP method `PUT`. It should respond with HTTP status `200` upon success and `404` if the task with the corresponding `id` can not be found. You need to:
@@ -69,5 +70,6 @@ Create a new endpoint to update an existing task. The endpoint should have the p
 - Deploy the application
 
 ## References
-- AWS Serverless Application Model (SAM) specification
-- AWS CLI
+- [AWS Serverless Application Model (SAM) specification](https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md)
+- [AWS SDK for JavaScript](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/index.html)
+- [AWS CLI](https://docs.aws.amazon.com/cli/latest/reference/)
