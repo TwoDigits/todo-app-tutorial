@@ -26,7 +26,10 @@ The script prints out the URL of the API Gateway you can use for testing the app
 Now the application should be deployed to the AWS account. You should see a corresponding stack in the [CloudFormation console](https://eu-west-1.console.aws.amazon.com/cloudformation/home?region=eu-west-1#/stacks). It should be called `todo-app-<USER>`.
 
 ## Testing
-Once the application has been deployed successfully, you can test it:
+Once the application has been deployed successfully, you can test it by sending requests to the API endpoints.
+
+### curl
+To use curl simply type in this command with the correct API endpoint URL:
 
 ```
 curl -i https://qcw6e3wy5h.execute-api.eu-west-1.amazonaws.com/dev
@@ -49,7 +52,10 @@ x-amz-cf-id: gBgdABFJ2UHRIFFNrR7SKUsnl5ATsPNoQ0P2jv6vWq_nkQpsyEJclA==
 []
 ```
 
-Alternatively, you can use tools like [Postman](https://www.getpostman.com) for testing the REST API.
+### Postman
+Alternatively, you can use tools like [Postman](https://www.getpostman.com) for testing the REST API. You can easily import the [environment configuration](todo-app-enironment.json). You need to update the environment with the API endpoint URL of your application stack.
+
+After that, you can import the [collection](todo-app-postman-collection.json) and test the various API calls.
 
 ## Exercises
 
