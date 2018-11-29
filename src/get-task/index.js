@@ -6,13 +6,7 @@ exports.handler = async (event) => {
   const id = event.pathParameters.id;
 
   const task = await getTask(id);
-  return {
-    statusCode: 200,
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(task)
-  }
+  // TODO: Return the task as a JSON object with status code 200. If no task for id can be found status code 404 should be returned.
 };
 
 async function getTask(id) {
