@@ -6,13 +6,19 @@ exports.handler = async (event) => {
   const id = event.pathParameters.id;
 
   const task = await getTask(id);
+  if(task === null || task === undefined) {
+    return {
+      statusCode: 404
+    };
+  }
+
   return {
     statusCode: 200,
     headers: {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(task)
-  }
+  };
 };
 
 async function getTask(id) {
