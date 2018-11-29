@@ -50,3 +50,24 @@ x-amz-cf-id: gBgdABFJ2UHRIFFNrR7SKUsnl5ATsPNoQ0P2jv6vWq_nkQpsyEJclA==
 ```
 
 Alternatively, you can use tools like [Postman](https://www.getpostman.com) for testing the REST API.
+
+## Exercises
+
+### Get Task
+Fill in the missing pieces for the endpoint implementation `get-task`. The endpoint should return HTTP status code `200` and the task as a JSON object if a record with the matching ID can be found in DynamoDB. In case no record can be found the HTTP status code `404` should be returned instead.
+
+### Delete Task
+
+### Update Task
+Create a new endpoint to update an existing task. The endpoint should have the path `/{id}` and the HTTP method `PUT`. It should respond with HTTP status `200` upon success and `404` if the task with the corresponding `id` can not be found. You need to:
+
+- Create the Lambda function `update-task`
+  - Get the path parameter from the event
+  - Get the body from the the event
+  - Save the task to the DynamoDB table
+- Configure it in `sam-template.yaml`
+- Deploy the application
+
+## References
+- AWS Serverless Application Model (SAM) specification
+- AWS CLI
