@@ -3,27 +3,9 @@ const aws = require('aws-sdk');
 const TasksTableName = process.env.TABLE_NAME;
 
 exports.handler = async (event) => {
-  const id = event.pathParameters.id;
-
-  await deleteTask(id);
-  return {
-    statusCode: 200
-  }
+  // TODO: Get the ID of the task and perform the deletion. Return HTTP status 200 if successful
 };
 
 async function deleteTask(id) {
-  const params = {
-    TableName: TasksTableName,
-    Key: {
-      id: id
-    }
-  };
-
-  const dynamoDB = new aws.DynamoDB.DocumentClient();
-  try {
-    await dynamoDB.delete(params).promise();
-  } catch (error) {
-    console.log('Failed to delete task with id "' + id + '": '+ error);
-    throw error;
-  }
+  // TODO: Implement deleting the record in DynamoDB. API documentation for DynamoDB can be found at https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB/DocumentClient.html
 }
