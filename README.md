@@ -9,7 +9,7 @@ Log in to your AWS account and switch to the [Cloud9 console](https://eu-west-1.
 Once the IDE has been launched successfully, go to the terminal and clone this repository:
 
 ```
-git clone https://github.com/jenseickmeyer/todo-app.git
+git clone https://github.com/TwoDigits/todo-app.git
 ```
 
 You need to make a change to the deployment file. The variable `STAGE_NAME` needs to be set to your username.
