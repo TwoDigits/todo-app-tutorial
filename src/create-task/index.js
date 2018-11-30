@@ -8,7 +8,9 @@ exports.handler = async (event) => {
   const path = event.requestContext.path;
 
   let task = JSON.parse(event.body);
+  // Generate a unique ID for the new task
   task.id = uuid();
+  // All new tasks are not done when they are created
   task.done = false;
 
   await createTask(task);
