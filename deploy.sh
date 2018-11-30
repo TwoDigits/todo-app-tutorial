@@ -23,4 +23,14 @@ aws cloudformation package --template-file $INPUT_FILE --output-template-file $O
 aws cloudformation deploy --template-file $OUTPUT_FILE --stack-name $STACK_NAME --parameter-overrides StageName=$STAGE_NAME --role-arn arn:aws:iam::975746714216:role/CloudFormationDeploymentRole --capabilities CAPABILITY_IAM
 
 API_GATEWAY_URL=$(aws cloudformation describe-stacks --stack-name $STACK_NAME --query 'Stacks[0].Outputs[0].OutputValue')
+
+length=${#API_GATEWAY_URL}
+API_GATEWAY_URL=${API_GATEWAY_URL:1:$length-2}
+
+echo
 echo "API Gateway URL: $API_GATEWAY_URL"
+echo "Get all the tasks:"
+echo "  curl -i $API_GATEWAY_URL/tasks"
+echo
+echo "Create a new task"
+echo "  curl -H \"Content-Type: application/json\" -d '{ \"title\": \"Task 1\", \"description\": \"Lorem ipsum dolor est\" }' $API_GATEWAY_URL/tasks"
