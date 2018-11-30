@@ -45,7 +45,7 @@ Resources:
         List:
           Type: Api
           Properties:
-            Path: /
+            Path: /tasks
             Method: GET
             RestApiId:
               Ref: RestApi
@@ -68,7 +68,7 @@ Resources:
         Create:
           Type: Api
           Properties:
-            Path: /
+            Path: /tasks
             Method: POST
             RestApiId:
               Ref: RestApi
@@ -91,7 +91,7 @@ Resources:
         Get:
           Type: Api
           Properties:
-            Path: /{id}
+            Path: /tasks/{id}
             Method: GET
             RestApiId:
               Ref: RestApi
@@ -114,7 +114,7 @@ Resources:
         Delete:
           Type: Api
           Properties:
-            Path: /{id}
+            Path: /tasks/{id}
             Method: DELETE
             RestApiId:
               Ref: RestApi
