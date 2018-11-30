@@ -32,7 +32,13 @@ Once the application has been deployed successfully, you can test it by sending 
 To use curl simply type in this command with the correct API endpoint URL:
 
 ```
-curl -i https://qcw6e3wy5h.execute-api.eu-west-1.amazonaws.com/dev
+curl -i https://qcw6e3wy5h.execute-api.eu-west-1.amazonaws.com/dev/tasks
+```
+
+To create a new task just use the following command:
+
+```
+curl -H "Content-Type: application/json" -d '{ "title":"Task 1", "description": "Lorem ipsum dolor est" }' https://qcw6e3wy5h.execute-api.eu-west-1.amazonaws.com/dev/tasks
 ```
 
 This should print out something like this:
