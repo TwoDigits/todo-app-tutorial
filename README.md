@@ -1,4 +1,4 @@
-# Todo App
+# Todo App Tutorial
 
 ## Prerequsites
 You need an AWS account for deploying the application contained in this repository. The instructions are based on using [AWS Cloud9](https://aws.amazon.com/cloud9/) as the IDE. Of course, you can use any other IDE you like. In this case you need to install and configure the AWS CLI appropriately.
