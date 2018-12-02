@@ -32,7 +32,7 @@ Resources:
     Properties:
       CodeUri: src/list-tasks/
       FunctionName:
-        Fn::Sub: todo-app-lists-tasks-${StageName}
+        Fn::Sub: todo-app-${StageName}-lists-tasks
       Policies:
         DynamoDBReadPolicy:
           TableName:
@@ -55,7 +55,7 @@ Resources:
     Properties:
       CodeUri: src/create-task/
       FunctionName:
-        Fn::Sub: todo-app-create-task-${StageName}
+        Fn::Sub: todo-app-${StageName}-create-task
       Policies:
         DynamoDBCrudPolicy:
           TableName:
@@ -78,7 +78,7 @@ Resources:
     Properties:
       CodeUri: src/get-task/
       FunctionName:
-        Fn::Sub: todo-app-get-task-${StageName}
+        Fn::Sub: todo-app-${StageName}-get-task
       Policies:
         DynamoDBReadPolicy:
           TableName:
@@ -101,7 +101,7 @@ Resources:
     Properties:
       CodeUri: src/delete-task/
       FunctionName:
-        Fn::Sub: todo-app-delete-task-${StageName}
+        Fn::Sub: todo-app-${StageName}-delete-task
       Policies:
         DynamoDBCrudPolicy:
           TableName:
@@ -123,7 +123,7 @@ Resources:
     Type: AWS::Serverless::SimpleTable
     Properties:
       TableName:
-        Fn::Sub: todo-app-tasks-${StageName}
+        Fn::Sub: todo-app-${StageName}-tasks
       PrimaryKey:
         Name: id
         Type: String

@@ -1,4 +1,7 @@
 # Todo App Tutorial
+This project contains a simple application which provides a REST API for an imaginary Todo app. It uses serverless services provided by Amazon Web Services (AWS). The services are configured by using the [Serverless Application Model (SAM)](https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md).
+
+The application is not fully implemented. Instead, for some functions only the partial implementation is available and it's an excercise to fill in the necessary code to get it working.
 
 ## Prerequsites
 You need an AWS account for deploying the application contained in this repository. The instructions are based on using [AWS Cloud9](https://aws.amazon.com/cloud9/) as the IDE. Of course, you can use any other IDE you like. In this case you need to install and configure the AWS CLI appropriately.
@@ -23,7 +26,7 @@ Replace `<STAGE_NAME>` with some unique value, e.g. your username.
 
 The script prints out the URL of the API Gateway you can use for testing the application.
 
-Now the application should be deployed to the AWS account. You should see a corresponding stack in the [CloudFormation console](https://eu-west-1.console.aws.amazon.com/cloudformation/home?region=eu-west-1#/stacks). It should be called `todo-app-<STAGE_NAME>`.
+Now the application should be deployed to the AWS account. You should see a corresponding stack in the [CloudFormation console](https://eu-central-1.console.aws.amazon.com/cloudformation/home?region=eu-central-1#/stacks). It should be called `todo-app-<STAGE_NAME>`.
 
 ## Testing
 Once the application has been deployed successfully, you can test it by sending requests to the API endpoints.
@@ -32,13 +35,13 @@ Once the application has been deployed successfully, you can test it by sending 
 To use curl simply type in this command with the correct API endpoint URL:
 
 ```
-curl -i https://qcw6e3wy5h.execute-api.eu-west-1.amazonaws.com/dev/tasks
+curl -i https://qcw6e3wy5h.execute-api.eu-central-1.amazonaws.com/dev/tasks
 ```
 
 To create a new task just use the following command:
 
 ```
-curl -H "Content-Type: application/json" -d '{ "title": "Task 1", "description": "Lorem ipsum dolor est" }' https://qcw6e3wy5h.execute-api.eu-west-1.amazonaws.com/dev/tasks
+curl -H "Content-Type: application/json" -d '{ "title": "Task 1", "description": "Lorem ipsum dolor est" }' https://qcw6e3wy5h.execute-api.eu-central-1.amazonaws.com/dev/tasks
 ```
 
 Use the actual URL of your API Gateway instance.
@@ -64,6 +67,17 @@ x-amz-cf-id: gBgdABFJ2UHRIFFNrR7SKUsnl5ATsPNoQ0P2jv6vWq_nkQpsyEJclA==
 Alternatively, you can use tools like [Postman](https://www.getpostman.com) for testing the REST API. You can easily import the [environment configuration](todo-app-enironment.json). You need to update the environment with the API endpoint URL of your application stack.
 
 After that, you can import the [collection](todo-app-postman-collection.json) and test the various API calls.
+
+## Find the building blocks
+The actual configuration of the different AWS services is done in [sam-template.yaml](sam-template.yaml). In the `Resource` section you find the declaration of the various services needed for the application: API Gateway, Lambda functions and DynamoDB table. To learn more about the syntax of this configuration file by reading the [SAM specification](https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md).
+
+The code for handling the different API requests can be found in the [src](src) directory. For each function the code is placed in a corresponding subdirectory, e.g. [src/list-tasks](src/list-tasks). The `index.js` file contains the actual implementation of the Lambda function.
+
+All requests are handled by the API Gateway. After deploying the application you can have a look in the [API Gateway Console](https://eu-central-1.console.aws.amazon.com/apigateway/home?region=eu-central-1#/apis) to find your actual API provisioned during the deployment. The API is called `todo-app-api-<STAGE_NAME>`.
+
+In the [Lambda Console](https://eu-central-1.console.aws.amazon.com/lambda/home?region=eu-central-1#/functions) you'll find all the Lambda functions belonging to your application. Their names all begin with `todo-app-<STAGE_NAME>-`.
+
+Finally, in the [DynamoDB Console](https://eu-central-1.console.aws.amazon.com/dynamodb/home?region=eu-central-1#) you'll find the table belonging to your application. It is called `todo-app-<STAGE_NAME>-tasks`.
 
 ## Exercises
 
