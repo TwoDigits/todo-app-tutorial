@@ -12,18 +12,18 @@ Once the IDE has been launched successfully, go to the terminal and clone this r
 git clone https://github.com/TwoDigits/todo-app.git
 ```
 
-You need to make a change to the deployment file. The variable `STAGE_NAME` needs to be set to your username.
-
 Next, change to the directory `todo-app` in the terminal and deploy the application:
 
 ```
 cd todo-app
-bash deploy.sh
+bash deploy.sh <STAGE_NAME>
 ```
+
+Replace `<STAGE_NAME>` with some unique value, e.g. your username.
 
 The script prints out the URL of the API Gateway you can use for testing the application.
 
-Now the application should be deployed to the AWS account. You should see a corresponding stack in the [CloudFormation console](https://eu-west-1.console.aws.amazon.com/cloudformation/home?region=eu-west-1#/stacks). It should be called `todo-app-<USER>`.
+Now the application should be deployed to the AWS account. You should see a corresponding stack in the [CloudFormation console](https://eu-west-1.console.aws.amazon.com/cloudformation/home?region=eu-west-1#/stacks). It should be called `todo-app-<STAGE_NAME>`.
 
 ## Testing
 Once the application has been deployed successfully, you can test it by sending requests to the API endpoints.
@@ -38,8 +38,10 @@ curl -i https://qcw6e3wy5h.execute-api.eu-west-1.amazonaws.com/dev/tasks
 To create a new task just use the following command:
 
 ```
-curl -H "Content-Type: application/json" -d '{ "title":"Task 1", "description": "Lorem ipsum dolor est" }' https://qcw6e3wy5h.execute-api.eu-west-1.amazonaws.com/dev/tasks
+curl -H "Content-Type: application/json" -d '{ "title": "Task 1", "description": "Lorem ipsum dolor est" }' https://qcw6e3wy5h.execute-api.eu-west-1.amazonaws.com/dev/tasks
 ```
+
+Use the actual URL of your API Gateway instance.
 
 This should print out something like this:
 

@@ -1,9 +1,16 @@
 #!/bin/bash
 
+if [ -z "$1" ]
+then
+  echo "Parameter is missing. Please provide the name of the stage like"
+  echo "  bash deploy.sh dev"
+  exit
+fi
+
 S3_BUCKET=com.accenture.dus.sam.deployment.eu-west-1
 INPUT_FILE=sam-template.yaml
 OUTPUT_FILE=sam-template-output.yaml
-STAGE_NAME=dev
+STAGE_NAME=$1
 STACK_NAME=todo-app-$STAGE_NAME
 
 basePath=$(pwd)
